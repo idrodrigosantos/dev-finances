@@ -92,7 +92,7 @@ const DOM = {
 
 const Utils = {
     formatAmount(value) {
-        value = Number(value) * 100;
+        value = Number(value.replace(/\,\./g, '')) * 100;
 
         return value;
     },
@@ -126,7 +126,7 @@ const Form = {
             date: Form.date.value
         }
     },
-    validateField() {
+    validateFields() {
         const { description, amount, date } = Form.getValues();
 
         if (description.trim() === '' || amount.trim() === '' || date.trim() === '') {
@@ -155,7 +155,7 @@ const Form = {
         event.preventDefault();
 
         try {
-            Form.validateField();
+            Form.validateFields();
 
             const transaction = Form.formatValues();
 
